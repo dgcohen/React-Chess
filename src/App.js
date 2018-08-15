@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import Piece from './components/Piece';
 
 // components
 
 class App extends Component {
   render() {
     return (
-      <h1>Welcome to my page</h1>
+      <Piece />
     );
   }
 }
