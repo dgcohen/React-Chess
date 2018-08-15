@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Piece from './components/Piece';
+import Square from './components/Square';
 
 // components
 
 class App extends Component {
   render() {
     return (
-      <Piece />
+      <Square black>
+        <Piece />
+      </Square>
     );
   }
 }
