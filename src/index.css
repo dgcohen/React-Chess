@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+}
+.board {
+  width: 500px;
+  height: 500px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.square {
+  width: 12.5%;
+  height: 12.5%;
+}
+
+.black {
+  background: #000000;
+}
+
+.white {
+  background: #FFFFFF;
+}
