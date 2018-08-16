@@ -42,7 +42,7 @@ class Game extends Component {
         });
       }
       else {
-        const isCheckmate = this.isCheckmate();
+        const isCheckmate = this.isCheckmate(this.state.player);
         const capturedWhitePieces = this.state.capturedWhitePieces.slice();
         const capturedBlackPieces = this.state.capturedBlackPieces.slice();
         const holdsEnemy = !!squares[index];
@@ -50,8 +50,9 @@ class Game extends Component {
         const srcToDestPath = squares[this.state.sourceSelection].getSrcToDestPath(this.state.sourceSelection, index);
         const isSlidingPathClear = this.isSlidingPathClear(srcToDestPath);
 
+        console.log(isCheckmate);
+
         if (isMovePossible && isSlidingPathClear) {
-          console.log(squares[index]);
           if (squares[index] !== null) {
             if (squares[index].player === 1) {
               capturedWhitePieces.push(squares[index]);
@@ -105,18 +106,27 @@ class Game extends Component {
    * Check if move is a checkmate.
    * @return {Boolean}
    */
-  isCheckmate(){
+  isCheckmate(currentPlayer){
+    let king = null;
     let kingIndex = null;
+    let possibleKingMoves = [];
+    console.log(currentPlayer);
     // find other player's king
     this.state.squares.forEach((square, index) => {
-      if (square && square.type === 'king' && square.player !== this.state.player) {
+      if (square && square.type === 'king' && square.player !== currentPlayer) {
         kingIndex = index;
+        king = square;
       };
     });
 
     // find clear spaces around king
+    this.state.squares.forEach((square, index) => {
+      if (king.isMovePossible(kingIndex, index) && square.player !== currentPlayer) {
+        possibleKingMoves.push(index);
+      };
+    });
 
-    return true;
+    return possibleKingMoves;
   }
 
   render() {
