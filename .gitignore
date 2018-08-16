@@ -9,6 +9,9 @@
 # production
 /build
 
+#compilec css
+/src/assets/css/*
+
 # misc
 .DS_Store
 .env.local
