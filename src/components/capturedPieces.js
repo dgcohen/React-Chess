@@ -1,5 +1,5 @@
 import React from 'react';
-import Square from './square';
+import Square from './Square';
 
 export default class CapturedPieces extends React.Component {
   renderPiece(piece) {
