@@ -1,38 +1,57 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import Square from './square';
-import Piece from './piece';
 
-export default class Board extends Component {
-  static propTypes = {
-    piecePosition: PropTypes.arrayOf(
-      PropTypes.number.isRequired
-    ).isRequired
+export default class Board extends React.Component {
+  renderRow = (row) => {
+    return row.map((square, index) => {
+      return(
+        <Square
+        key = { index }
+        piece = { this.props.squares[square.index] }
+        style = { this.props.squares[square.index] ? this.props.squares[square.index].style : null }
+        shade = { square.shade }
+        onClick = { () => this.props.onClick(square.index) }
+      />
+      )
+    });
   };
 
-  renderSquare(i) {
-    const x = i % 8;
-    const y = Math.floor((i / 8));
-    const black = (x + y) % 2 === 1;
+  renderBoard = (rows) => {
+    return rows.map((row, index) => {
+      return(
+        <div
+        className="row"
+        key={index}
+        >
+        {this.renderRow(row)}
+        </div>
+      );
+    });
+  };
 
-    const [pieceX, pieceY] = this.props.piecePosition;
-    const piece = (x === pieceX && y === pieceY) ? <Piece /> : null;
+  render () {
+    const rows = [];
+    for (let i = 0; i < 8; i++) {
+      const row = [];
+      for (let j = 0; j < 8; j++) {
+        const shade = (isEven(i) && isEven(j)) || (!isEven(i) && !isEven(j)) ? "light" : "dark";
+        row.push({
+          index: (i * 8) + j,
+          shade: shade
+        });
+      }
 
-    return (
-      <Square black={black}>
-        {piece}
-      </Square>
-    );
-  }
-  render() {
-    const squares = [];
-    for (let i = 0; i < 64; i++) {
-      squares.push(this.renderSquare(i));
+      rows.push(row);
     }
+
     return (
       <div className="board">
-        {squares}
+        { this.renderBoard(rows) }
       </div>
     );
-  }
+  };
 }
+
+function isEven(number) {
+  return number % 2 === 0;
+};

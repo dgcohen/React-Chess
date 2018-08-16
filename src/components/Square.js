@@ -1,22 +1,9 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 
-export default class Square extends Component {
-  static propTypes = {
-    black: PropTypes.bool
-  };
-
-  render() {
-    const { black } = this.props;
-    const color = black ? 'black' : 'white';
-
-    return (
-      <div
-       className={"square " + color}
-       onClick={this.props.onClick}
-      >
-      {this.props.children}
-      </div>
-    )
-  }
+export default function Square(props) {
+  return (
+    <div className={"square " + props.shade} onClick={props.onClick}>
+      <div className="piece" style={props.style}></div>
+    </div>
+  )
 }
