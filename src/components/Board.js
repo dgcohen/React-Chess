@@ -1,5 +1,5 @@
 import React from 'react';
-import Square from './Square';
+import Square from './square';
 
 export default class Board extends React.Component {
   renderRow = (row) => {
