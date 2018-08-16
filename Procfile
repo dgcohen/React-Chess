@@ -1,1 +1,1 @@
-web: cd /src/assets && gulp build && node ../../server.js
+web: node server.js
