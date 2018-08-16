@@ -42,6 +42,7 @@ class Game extends Component {
         });
       }
       else {
+        const isCheckmate = this.isCheckmate();
         const capturedWhitePieces = this.state.capturedWhitePieces.slice();
         const capturedBlackPieces = this.state.capturedBlackPieces.slice();
         const holdsEnemy = !!squares[index];
@@ -98,6 +99,24 @@ class Game extends Component {
       }
     }
     return slidingIsPathClear;
+  }
+
+  /**
+   * Check if move is a checkmate.
+   * @return {Boolean}
+   */
+  isCheckmate(){
+    let kingIndex = null;
+    // find other player's king
+    this.state.squares.forEach((square, index) => {
+      if (square && square.type === 'king' && square.player !== this.state.player) {
+        kingIndex = index;
+      };
+    });
+
+    // find clear spaces around king
+
+    return true;
   }
 
   render() {
