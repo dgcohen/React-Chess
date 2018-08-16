@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Square from './Square';
-import Piece from './Piece';
+import Square from './square';
+import Piece from './piece';
 
 export default class Board extends Component {
   static propTypes = {
