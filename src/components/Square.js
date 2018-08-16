@@ -11,7 +11,12 @@ export default class Square extends Component {
     const color = black ? 'black' : 'white';
 
     return (
-      <div className={"square " + color}>{this.props.children}</div>
+      <div
+       className={"square " + color}
+       onClick={this.props.onClick}
+      >
+      {this.props.children}
+      </div>
     )
   }
 }
