@@ -110,7 +110,7 @@ class Game extends Component {
     let king = null;
     let kingIndex = null;
     let possibleKingMoves = [];
-    console.log(currentPlayer);
+
     // find other player's king
     this.state.squares.forEach((square, index) => {
       if (square && square.type === 'king' && square.player !== currentPlayer) {
@@ -121,8 +121,13 @@ class Game extends Component {
 
     // find clear spaces around king
     this.state.squares.forEach((square, index) => {
-      if (king.isMovePossible(kingIndex, index) && square.player !== currentPlayer) {
-        possibleKingMoves.push(index);
+      if (king.isMovePossible(kingIndex, index)) {
+        if (square && square.player === currentPlayer) {
+          possibleKingMoves.push(index);
+        }
+        else if (square == null) {
+          possibleKingMoves.push(index);
+        }
       };
     });
 
