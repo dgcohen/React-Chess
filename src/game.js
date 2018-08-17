@@ -110,6 +110,7 @@ class Game extends Component {
     let king = null;
     let kingIndex = null;
     let possibleKingMoves = [];
+    let currentPlayerPieces = [];
 
     // find other player's king
     this.state.squares.forEach((square, index) => {
@@ -117,6 +118,9 @@ class Game extends Component {
         kingIndex = index;
         king = square;
       };
+      if (square && square.player === currentPlayer) {
+        currentPlayerPieces.push(index);
+      }
     });
 
     // find clear spaces around king
@@ -130,8 +134,18 @@ class Game extends Component {
         }
       };
     });
-
-    return possibleKingMoves;
+    if (possibleKingMoves.length) {
+      possibleKingMoves.forEach((kingIndex) => {
+        currentPlayerPieces.forEach((pieceIndex) => {
+          let isMovePossible = squares[this.state.sourceSelection].isMovePossible(this.state.sourceSelection, index, holdsEnemy);
+          let isSlidingPathClear = this.isSlidingPathClear(srcToDestPath);
+        });
+      });
+    }
+    else {
+      return false;
+    }
+    
   }
 
   render() {
