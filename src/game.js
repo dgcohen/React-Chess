@@ -165,17 +165,22 @@ class Game extends Component {
 
   render() {
     return (
-      <div>
-      <Board
-        squares = { this.state.squares }
-        onClick = { (index) => this.handleClick(index) }
-      />
-      <div className="game-info">
-        <div className={this.state.turn + " turn-info"}>
-          <h3>{this.state.player === 1 ? 'White\'s Turn' : 'Black\'s Turn'}</h3>
+      <div className="main">
+        <h1>React Chess</h1>
+        <div className="game-container">
+        <Board
+          squares = { this.state.squares }
+          onClick = { (index) => this.handleClick(index) }
+        />
+        <div className="game-info">
+          <div className="text-container">
+            <div className={this.state.turn + " turn-info"}>
+              <h3>{this.state.player === 1 ? 'White\'s Turn' : 'Black\'s Turn'} to move.</h3>
+            </div>
+            <div className="game-status">{this.state.status}</div>
+          </div>
         </div>
-        <div className="game-status">{this.state.status}</div>
-      </div>
+        </div>
       </div>
     );
   }
