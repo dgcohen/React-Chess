@@ -181,6 +181,12 @@ class Game extends Component {
           </div>
         </div>
         </div>
+        <footer>
+          <div className="text-container">
+            <p>Built by Diego Cohen</p>
+            <a href="http://www.diegocohen.com/" target="_blank">www.diegocohen.com</a>
+          </div>
+        </footer>
       </div>
     );
   }

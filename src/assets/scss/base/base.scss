@@ -36,9 +36,14 @@ h1 {
   }
 }
 .board {
-  width: 300px;
-  height: 300px;
+  width: 280px;
+  height: 280px;
   margin: auto;
+
+  @include mq($bp480) {
+    width: 320px;
+    height: 320px;
+  }
 
   @include mq($bp768) {
     width: 500px;
@@ -76,7 +81,7 @@ h1 {
   background: #B38767;
 
   &:hover {
-    background: #4b3525;
+    background: #a97854;
   }
 }
 
@@ -84,12 +89,12 @@ h1 {
   background: #EED9B9;
 
   &:hover {
-    background: #885f21;
+    background: #e5c696;
   }
 }
 
 .game-info {
-  padding: 30px 0;
+  padding: 10px 0;
 
   @include mq($bp768) {
     flex-basis: calc(100% - 560px);
@@ -120,5 +125,36 @@ h1 {
     line-height: 26px;
     text-align: center;
     color: $color-white;
+  }
+}
+
+footer {
+  .text-container {
+    padding: 0 0 10px;
+
+    @include mq($bp768) {
+      padding: 60px 30px 20px;
+    }
+
+    p,
+    a {
+      display: block;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 18px;
+      text-align: center;
+      color: $color-white;
+      padding: 0;
+      margin: 0;
+
+      @include mq($bp768) {
+        font-size: 18px;
+        line-height: 24px;
+      }
+
+      &:hover {
+        color: #ccc;
+      }
+    }
   }
 }
